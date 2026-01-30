@@ -1,12 +1,12 @@
-@roomBookingApiSuite
+@hotelRoomBookingAPISuite
 Feature: Auth Login API
 
   @login @valid
   Scenario Outline: User login with valid credentials
     Given user login with given credentials "<username>" and "<password>"
-    When user submit the login request "/api/auth/login"
+    When user submit the login request
     Then user successfully login with the status <statusCode>
-    And user should get authentication token
+    And user should receive the authentication token
 
     Examples:
       | username | password | statusCode |
@@ -15,7 +15,7 @@ Feature: Auth Login API
   @login @invalid
   Scenario Outline: Login with invalid credentials
     Given user login with given credentials "<username>" and "<password>"
-    When user submit the login request "/api/auth/login"
+    When user submit the login request
     Then user should get the response with <statusCode> and "<errorMessage>"
     Examples:
       | username | password | statusCode | errorMessage |
@@ -36,19 +36,8 @@ Feature: Auth Login API
   @login @invalid
   Scenario Outline: Login with wrong HTTP method
     Given user login with given credentials "<username>" and "<password>"
-    When user submit the GET login request "/api/auth/login"
+    When user submit the invalid login request
     Then user should get the response with <statusCode>
     Examples:
       | username | password | statusCode |
       | admin    | password | 405        |
-
-#  @login @invalid
-#  Scenario Outline: Login fails with multiple invalid attempts
-#    Given user login multiple times with invalid credentials "<username>" and "<password>"
-#    When user submit the login request "/api/auth/login"
-#    Then user should get the response with <statusCode>
-#
-#    Examples:
-#      | username | password | statusCode |
-#      | wrong    | wrong    | 429        |
-

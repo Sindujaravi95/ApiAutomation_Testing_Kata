@@ -21,6 +21,8 @@ public class AuthenticationSteps {
     private RequestSpecification request;
     private Response response;
     public String token = "";
+    String login_Endpoint="/api/auth/login";
+    String invalidLogin_Endpoint=  "/api/login";
 
 
     @Given("user login with given credentials {string} and {string}")
@@ -42,23 +44,38 @@ public class AuthenticationSteps {
     }
 
 
-    @When("user submit the login request {string}")
-    public void user_submit_the_login_request(String authEndpoint) {
+    @When("user submit the login request")
+    public void user_submit_the_login_request() {
         try {
             response = request
-                    .post(authEndpoint);
+                    .post(login_Endpoint);
         } catch (NullPointerException e) {
             response = given()
                     .contentType(ContentType.JSON)
                     .when()
-                    .post(authEndpoint);
+                    .post(login_Endpoint);
         }
     }
 
-    @When("user submit the GET login request {string}")
-    public void user_submit_get_login_request(String authEndpoint) {
+    @When("user submit the invalid login request")
+    public void user_submit_the_invalid_login_request() {
         response = request
-                .get(authEndpoint);
+                .get(login_Endpoint);
+    }
+
+
+
+    @When("user submit the login request {string}")
+    public void user_submit_get_login_request(String invalidLogin_Endpoint) {
+        try {
+            response = request
+                    .post(invalidLogin_Endpoint);
+        } catch (NullPointerException e) {
+            response = given()
+                    .contentType(ContentType.JSON)
+                    .when()
+                    .post(invalidLogin_Endpoint);
+        }
     }
 
     @When("user login multiple times with invalid credentials {string} and {string}")
@@ -71,9 +88,9 @@ public class AuthenticationSteps {
         }
     }
 
-    @Then("user should get authentication token")
+    @Then("user should receive the authentication token")
     public void response_should_contain_authentication_token() {
-        String token = response.jsonPath().getString("token");
+        token = response.jsonPath().getString("token");
         Assert.assertNotNull(token, "Authentication token is missing");
     }
 
