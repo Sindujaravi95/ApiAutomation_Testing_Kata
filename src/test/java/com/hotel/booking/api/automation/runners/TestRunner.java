@@ -5,12 +5,12 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        features = "src/test/resources/features/authentication.feature",
+        features = "src/test/resources/features/createbooking.feature",
         glue = {
                 "com.hotel.booking.api.automation.stepdefinitions",
                 "com.hotel.booking.api.automation.hooks"
         },
-       // tags="@test",
+       // tags="@valid",
         plugin = {
                 "pretty",
                 "html:target/cucumber.html"

@@ -10,6 +10,12 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
+import io.restassured.response.Response;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static io.restassured.RestAssured.given;
 
 
 public class Hooks {
@@ -25,6 +31,22 @@ public class Hooks {
                 .httpClient(HttpClientConfig.httpClientConfig()
                         .setParam("http.connection.timeout", 30000)
                         .setParam("http.socket.timeout", 30000));
+
+        Map<String, String> loginPayload = new HashMap<>();
+        loginPayload.put("username", ConfigReader.get("username"));
+        loginPayload.put("password", ConfigReader.get("password"));
+
+        Response response = given()
+                .contentType("application/json")
+                .body(loginPayload)
+                .when()
+                .post("/api/auth/login");
+
+        if(response.getStatusCode()==200){
+            String token=response.jsonPath().get("token");
+            ConfigReader.set("token",token);
+            System.out.println("Token : "+token);
+        }
 
         test = extent.createTest(scenario.getName());
         System.out.println("Starting Scenario: " + scenario.getName());
