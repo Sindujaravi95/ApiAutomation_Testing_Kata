@@ -28,7 +28,7 @@ public class UpdateBookingSteps {
     private int bookingId;
     private int actualStatusCode;
     String actualErrorMessage;
-    String booking_Endpoint="/api/booking";
+    String booking_Endpoint = "/api/booking";
 
     // ---------- SETUP ----------
 
@@ -57,7 +57,7 @@ public class UpdateBookingSteps {
             createPayload.put("depositpaid", false);
             createPayload.put("bookingdates", bookingDates);
             createPayload.put("email", data.get("email"));
-            createPayload.put("phone",data.get("phone"));
+            createPayload.put("phone", data.get("phone"));
         }
         return createPayload;
     }
@@ -103,7 +103,7 @@ public class UpdateBookingSteps {
         response = request
                 .body(updatePayload)
                 .when()
-                .put(booking_Endpoint+"/" +bookingId);
+                .put(booking_Endpoint + "/" + bookingId);
     }
 
     @When("user update the booking request {string}")
@@ -111,7 +111,7 @@ public class UpdateBookingSteps {
         response = request
                 .body(updatePayload)
                 .when()
-                .put(invalidEndpoint+ bookingId);
+                .put(invalidEndpoint + bookingId);
     }
 
     @When("user update the booking request with invalid booking id")
@@ -144,7 +144,7 @@ public class UpdateBookingSteps {
     public void response_status_should_be(int expectedStatusCode, String expectedErrorMessage) {
         response.then().log().all();
         int actualStatusCode = response.getStatusCode();
-        Assert.assertEquals(actualStatusCode,expectedStatusCode);
+        Assert.assertEquals(actualStatusCode, expectedStatusCode);
         try {
             actualErrorMessage = response.jsonPath().getString("errors[0]");
         } catch (Exception e) {

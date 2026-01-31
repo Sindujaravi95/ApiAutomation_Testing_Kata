@@ -22,12 +22,12 @@ public class CreateBookingSteps {
 
     RequestSpecification request;
     Response response;
-    Map<String, Object> requestBody=new HashMap<String,Object>();
-    String bookingId="";
-    String booking_Endpoint="/api/booking";
+    Map<String, Object> requestBody = new HashMap<String, Object>();
+    String bookingId = "";
+    String booking_Endpoint = "/api/booking";
     String actualErrorMessage = "";
 
-    @Before(order=1)
+    @Before(order = 1)
     public void setup() {
         request = given()
                 .contentType(ContentType.JSON)
@@ -49,10 +49,10 @@ public class CreateBookingSteps {
             requestBody.put("roomid", CommonUtils.generateRandomRoomId());
             requestBody.put("firstname", data.get("firstname"));
             requestBody.put("lastname", data.get("lastname"));
-            requestBody.put("depositpaid", false);
+            requestBody.put("depositpaid", data.get("depositpaid"));
             requestBody.put("bookingdates", bookingDates);
             requestBody.put("email", data.get("email"));
-            requestBody.put("phone",data.get("phone"));
+            requestBody.put("phone", data.get("phone"));
         }
         return requestBody;
     }
@@ -74,9 +74,10 @@ public class CreateBookingSteps {
                     .post("/api/booking");
         }
     }
+
     @When("user submit the booking request")
     public void send_post_request() {
-        response =request
+        response = request
                 .body(requestBody)
                 .when()
                 .post(booking_Endpoint);
@@ -84,7 +85,7 @@ public class CreateBookingSteps {
 
     @When("user submit the booking request {string}")
     public void send_post_request(String invalid_Booking_Endpoint) {
-        response =request
+        response = request
                 .body(requestBody)
                 .when()
                 .post(invalid_Booking_Endpoint);
@@ -97,7 +98,7 @@ public class CreateBookingSteps {
         String actualErrorMessage = "";
         String expectedErrorMessage = "";
         if (expectedStatusCode == actualStatusCode) {
-            bookingId=response.jsonPath().getString("bookingId");
+            bookingId = response.jsonPath().getString("bookingId");
         } else {
             System.out.print("Login not successful");
             Assert.assertEquals(actualStatusCode, expectedStatusCode);
@@ -114,12 +115,12 @@ public class CreateBookingSteps {
     public void response_status_should_be(int expectedStatusCode, String expectedErrorMessage) {
         response.then().log().all();
         int actualStatusCode = response.getStatusCode();
-        Assert.assertEquals(actualStatusCode,expectedStatusCode);
-            try {
-                actualErrorMessage = response.jsonPath().getString("errors[0]");
-            } catch (Exception e) {
-                actualErrorMessage = "";
-            }
+        Assert.assertEquals(actualStatusCode, expectedStatusCode);
+        try {
+            actualErrorMessage = response.jsonPath().getString("errors[0]");
+        } catch (Exception e) {
+            actualErrorMessage = "";
+        }
         logResultTable(
                 expectedStatusCode,
                 actualStatusCode,

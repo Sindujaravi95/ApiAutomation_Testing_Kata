@@ -15,12 +15,12 @@ import static com.hotel.booking.api.automation.report.ExtentReportManager.logRes
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class SearchBookingDetailsSteps {
+public class SearchBookingDetailsWithRoomIdSteps {
 
     private RequestSpecification request;
     private Response response;
     private static final String booking_Endpoint = "/api/booking";
-    String actualErrorMessage="";
+    String actualErrorMessage = "";
 
     @Before(order = 1)
     public void setup() {
@@ -37,8 +37,6 @@ public class SearchBookingDetailsSteps {
         request = request
                 .queryParam("roomid", roomId);
     }
-
-
     // ---------- WHEN ----------
 
     @When("user search the booking details")
@@ -47,7 +45,6 @@ public class SearchBookingDetailsSteps {
         response = request
                 .get(booking_Endpoint);
     }
-
     @When("user search the booking details with {string}")
     public void user_search_booking_details_invalid_endpoint(String invalidEndpoint) {
         response = request
@@ -77,7 +74,7 @@ public class SearchBookingDetailsSteps {
     public void response_status_should_be(int expectedStatusCode, String expectedErrorMessage) {
         response.then().log().all();
         int actualStatusCode = response.getStatusCode();
-        Assert.assertEquals(actualStatusCode,expectedStatusCode);
+        Assert.assertEquals(actualStatusCode, expectedStatusCode);
         try {
             actualErrorMessage = response.jsonPath().getString("errors[0]");
         } catch (Exception e) {

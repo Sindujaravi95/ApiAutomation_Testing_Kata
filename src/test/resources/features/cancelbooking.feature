@@ -4,8 +4,8 @@ Feature: Cancel Booking API
   @cancelBooking @valid
   Scenario: Cancel booking with valid booking id
     Given user books the hotel room with given details
-      | firstname   | lastname   | email   | phone   | checkin   | checkout   |
-      | testing | testname | test25@gmail.com | 34943847898 | 2025-09-16 | 2025-09-17 |
+      | firstname | lastname | email            | phone       | checkin    | checkout   |
+      | testing   | testname | test25@gmail.com | 34943847898 | 2025-09-16 | 2025-09-17 |
     And user submit the room booking request
     And user should receive the room booking id
     When user cancel hotel booking request
@@ -14,8 +14,8 @@ Feature: Cancel Booking API
   @cancelBooking @invalid
   Scenario: Cancel booking with invalid endpoint - 404
     Given user books the hotel room with given details
-      | firstname   | lastname   | email   | phone   | checkin   | checkout   |
-      | testing | testing | test56@gmail.com | 34943847898 | 2025-10-17 | 2025-10-18 |
+      | firstname | lastname | email            | phone       | checkin    | checkout   |
+      | testing   | testing  | test56@gmail.com | 34943847898 | 2025-10-17 | 2025-10-18 |
     And user submit the room booking request
     And user should receive the room booking id
     When user cancel hotel booking with "/api/delete"
@@ -31,8 +31,8 @@ Feature: Cancel Booking API
   @cancelBooking @invalid
   Scenario: Cancel booking using unsupported method - 405
     Given user books the hotel room with given details
-      | firstname   | lastname   | email   | phone   | checkin   | checkout   |
-      | test | test | test@gmail.com | 34943847898 | 2025-03-30 | 2025-03-31 |
+      | firstname | lastname | email          | phone       | checkin    | checkout   |
+      | test      | test     | test@gmail.com | 34943847898 | 2025-03-30 | 2025-03-31 |
     And user submit the room booking request
     And user should receive the room booking id
     When user cancel the room booking with invalid request

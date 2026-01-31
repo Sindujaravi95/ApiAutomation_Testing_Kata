@@ -23,7 +23,7 @@ public class Hooks {
     static ExtentReports extent = ExtentReportManager.getReport();
     public static ExtentTest test;
 
-    @Before(order=0)
+    @Before(order = 0)
     public void beforeScenario(Scenario scenario) {
         RestAssured.baseURI = ConfigReader.get("base.url");
         RestAssured.useRelaxedHTTPSValidation();
@@ -42,9 +42,9 @@ public class Hooks {
                 .when()
                 .post("/api/auth/login");
 
-        if(response.getStatusCode()==200){
-            String token=response.jsonPath().get("token");
-            ConfigReader.set("token",token);
+        if (response.getStatusCode() == 200) {
+            String token = response.jsonPath().get("token");
+            ConfigReader.set("token", token);
         }
 
         test = extent.createTest(scenario.getName());

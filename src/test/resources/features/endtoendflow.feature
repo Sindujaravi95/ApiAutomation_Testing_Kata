@@ -39,8 +39,8 @@ Feature: Test end to end flow for Booking, Room and Report APIs
 
     # ---------- UPDATE BOOKING ----------
     When user update the hotel room with below details
-      | newFirst | newLast | newEmail          | newPhone     | newCheckin | newCheckout |
-      | Sindu    | Ravi    | updated@gmail.com | 87955879704  | 2025-01-01 | 2025-01-02 |
+      | newFirst | newLast | newEmail          | newPhone    | newCheckin | newCheckout |
+      | Sindu    | Ravi    | updated@gmail.com | 87955879704 | 2025-01-01 | 2025-01-02  |
     And user update the booking request with booking id
     Then user successfully received the response with status code 200
 
@@ -50,5 +50,5 @@ Feature: Test end to end flow for Booking, Room and Report APIs
 
 
     Examples:
-      | firstname | lastname | email                 | phone        | checkin    | checkout   |
-      | Userend   | endtest  | user678.end@gmail.com | 46645895464  | 2025-12-29 | 2025-12-30 |
+      | firstname | lastname | email                 | phone       | checkin    | checkout   |
+      | Userend   | endtest  | user678.end@gmail.com | 46645895464 | 2025-12-29 | 2025-12-30 |

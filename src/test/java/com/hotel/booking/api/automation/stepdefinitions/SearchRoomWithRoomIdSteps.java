@@ -34,7 +34,7 @@ public class SearchRoomWithRoomIdSteps {
     }
 
     @When("user search the room details with {string} and room id {int}")
-    public void user_hits_invalid_room_endpoint(String invalidEndpoint,int roomId) {
+    public void user_hits_invalid_room_endpoint(String invalidEndpoint, int roomId) {
         response = request
                 .get(invalidEndpoint + roomId);
     }

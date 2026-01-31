@@ -2,7 +2,7 @@
 Feature: Get Booking Report API
 
   @bookingReport
-  Scenario: Search booking report with different authorization types
+  Scenario: Search hotel room booking report with valid endpoint
     When user search the booking report
     Then user successfully received the report with status 200
 

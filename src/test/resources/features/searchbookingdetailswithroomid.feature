@@ -9,8 +9,7 @@ Feature: Get booking details by room id
 
     Examples:
       | roomId | statusCode |
-      | 1       | 200        |
-
+      | 1      | 200        |
 
   @bookingDetailsByRoomId @invalid
   Scenario Outline: Search booking details with invalid room id
@@ -19,8 +18,8 @@ Feature: Get booking details by room id
     Then user should get the booking details response with <statusCode> and "<errorMessage>"
 
     Examples:
-      | roomId |  statusCode | errorMessage |
-      |        |  400        | Room ID is required|
+      | roomId | statusCode | errorMessage        |
+      |        | 400        | Room ID is required |
 
 
   @bookingDetailsByRoomId @invalid

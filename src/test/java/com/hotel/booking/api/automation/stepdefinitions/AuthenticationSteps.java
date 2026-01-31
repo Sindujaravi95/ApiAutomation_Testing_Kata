@@ -21,8 +21,8 @@ public class AuthenticationSteps {
     private RequestSpecification request;
     private Response response;
     public String token = "";
-    String login_Endpoint="/api/auth/login";
-    String invalidLogin_Endpoint=  "/api/login";
+    String login_Endpoint = "/api/auth/login";
+    String invalidLogin_Endpoint = "/api/login";
 
 
     @Given("user login with given credentials {string} and {string}")
@@ -64,7 +64,6 @@ public class AuthenticationSteps {
     }
 
 
-
     @When("user submit the login request {string}")
     public void user_submit_get_login_request(String invalidLogin_Endpoint) {
         try {
@@ -79,9 +78,9 @@ public class AuthenticationSteps {
     }
 
     @When("user login multiple times with invalid credentials {string} and {string}")
-    public void user_attempts_login_multiple_times_with_invalid_credentials(String username,String password) {
+    public void user_attempts_login_multiple_times_with_invalid_credentials(String username, String password) {
         for (int i = 0; i < 5; i++) {
-            request=user_login_with_given_credentials(username,password);
+            request = user_login_with_given_credentials(username, password);
             response = request
                     .when()
                     .post("/api/auth/login");
@@ -116,7 +115,7 @@ public class AuthenticationSteps {
     public void response_status_should_be(int expectedStatusCode, String expectedErrorMessage) {
         response.then().log().all();
         int actualStatusCode = response.getStatusCode();
-        Assert.assertEquals(actualStatusCode,expectedStatusCode);
+        Assert.assertEquals(actualStatusCode, expectedStatusCode);
         String actualErrorMessage = "";
         if (actualStatusCode == 200) {
             token = response.jsonPath().get("token");
@@ -148,8 +147,6 @@ public class AuthenticationSteps {
         Assert.assertEquals(actualStatusCode, expectedStatusCode);
         logResultTable(expectedStatusCode, actualStatusCode, expectedErrorMessage, actualErrorMessage);
     }
-
-
 
 
 }

@@ -27,12 +27,12 @@ public class EndToEndFlowSteps {
 
     private int bookingId;
     private final int roomId = 1;
-    String booking_Endpoint="/api/booking";
-    String room_Endpoint="/api/room";
+    String booking_Endpoint = "/api/booking";
+    String room_Endpoint = "/api/room";
 
     // ---------------- SETUP ----------------
 
-    @Before(order=1)
+    @Before(order = 1)
     public void setup() {
         request = given()
                 .contentType(ContentType.JSON)
@@ -142,7 +142,7 @@ public class EndToEndFlowSteps {
 
     @When("user update the booking request with booking id")
     public void update_booking_request() {
-        String updateEndPoint=booking_Endpoint+"/"+bookingId;
+        String updateEndPoint = booking_Endpoint + "/" + bookingId;
         response = request
                 .body(updatePayload)
                 .when()
@@ -155,7 +155,7 @@ public class EndToEndFlowSteps {
     public void delete_booking() {
         response = request
                 .when()
-                .delete(booking_Endpoint+"/" + bookingId);
+                .delete(booking_Endpoint + "/" + bookingId);
     }
 
     @Then("user successfully received the response with status code {int}")
