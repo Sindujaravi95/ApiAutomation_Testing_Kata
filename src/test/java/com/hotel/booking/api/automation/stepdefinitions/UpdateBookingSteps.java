@@ -98,7 +98,7 @@ public class UpdateBookingSteps {
         }
     }
 
-    @When("user submit the update booking request")
+    @When("user update the booking request")
     public void user_hits_put_booking_endpoint() {
         response = request
                 .body(updatePayload)
@@ -106,7 +106,7 @@ public class UpdateBookingSteps {
                 .put(booking_Endpoint+"/" +bookingId);
     }
 
-    @When("user submit the update booking request {string}")
+    @When("user update the booking request {string}")
     public void user_hits_put_booking_invalid_endpoint(String invalidEndpoint) {
         response = request
                 .body(updatePayload)
@@ -114,7 +114,7 @@ public class UpdateBookingSteps {
                 .put(invalidEndpoint+ bookingId);
     }
 
-    @When("user submit the update booking request with invalid booking id")
+    @When("user update the booking request with invalid booking id")
     public void user_hits_put_booking_endpoint_with_invalid_id() {
         response = request
                 .body(updatePayload)

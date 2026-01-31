@@ -11,7 +11,7 @@ Feature: Update Booking API
     When user update the hotel room with following details
       | firstname    | lastname    | email        | phone        | checkin      | checkout      |
       | <newFirst>   | <newLast>   | <newEmail>   | <newPhone>   | <newCheckin> | <newCheckout> |
-    And user submit the update booking request
+    And user update the booking request
     Then user successfully update the room details with status <statusCode>
 
     Examples:
@@ -28,7 +28,7 @@ Feature: Update Booking API
     When user update the hotel room with following details
       | firstname | lastname | email   | phone   | checkin   | checkout   |
       | <fname>   | <lname>  | <email> | <phone> | <checkin> | <checkout> |
-    And user submit the update booking request
+    And user update the booking request
     Then user should get the update booking response with <statusCode> and "<errorMessage>"
 
     Examples:
@@ -51,7 +51,7 @@ Feature: Update Booking API
     When user update the hotel room with following details
       | firstname    | lastname    | email        | phone        | checkin      | checkout      |
       | <newFirst>   | <newLast>   | <newEmail>   | <newPhone>   | <newCheckin> | <newCheckout> |
-    And user submit the update booking request "/api/bookings"
+    And user update the booking request "/api/bookings"
     Then user should get the update booking response with <statusCode>
 
     Examples:
@@ -64,7 +64,7 @@ Feature: Update Booking API
     Given user update the hotel room with following details
       | firstname    | lastname    | email        | phone        | checkin      | checkout      |
       | <firstname>   | <lastname>   | <email>   | <phone>   | <checkin> | <checkout> |
-    And user submit the update booking request with invalid booking id
+    And user update the booking request with invalid booking id
     Then user should get the update booking response with 404
     Examples:
       | firstname | lastname | email          | phone        | checkin    | checkout   |
