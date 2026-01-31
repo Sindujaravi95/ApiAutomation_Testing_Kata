@@ -1,7 +1,6 @@
 package com.hotel.booking.api.automation.stepdefinitions;
 
 
-
 import com.hotel.booking.api.automation.utils.ConfigReader;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.When;
@@ -21,14 +20,13 @@ public class SearchBookingReportSteps {
 
     private static final String report_Endpoint = "/api/report";
 
-    @Before(order=1)
+    @Before(order = 1)
     public void setup() {
         request = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + ConfigReader.get("token"))
                 .cookie("token", ConfigReader.get("token"));
     }
-
 
 
     @When("user search the booking report")
