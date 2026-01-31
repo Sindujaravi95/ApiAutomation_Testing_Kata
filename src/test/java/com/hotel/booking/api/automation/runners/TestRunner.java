@@ -10,7 +10,7 @@ import io.cucumber.testng.CucumberOptions;
                 "com.hotel.booking.api.automation.stepdefinitions",
                 "com.hotel.booking.api.automation.hooks"
         },
-        tags="@hotelRoomBookingApiSuite",
+        tags = "@hotelRoomBookingApiSuite",
         plugin = {
                 "pretty",
                 "html:target/cucumber.html"

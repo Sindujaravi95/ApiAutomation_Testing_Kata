@@ -77,12 +77,7 @@ public class ExtentReportManager {
 
         table.append("</table>");
         table.append("</details>");
-
         test.info(table.toString());
-
-//        if (!scenarioPass) {
-//            test.fail("Scenario validation failed");
-//        }
     }
 
     public static void flushReports() {

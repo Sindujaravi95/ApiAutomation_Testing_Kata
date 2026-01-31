@@ -6,7 +6,6 @@ Feature: Get available rooms by checkin and checkout dates
     Given user check the availability of rooms with checkin "<checkin>" and checkout "<checkout>" dates
     When user search the availability of rooms
     Then user successfully received the available rooms with <statusCode>
-
     Examples:
       | checkin    | checkout   | statusCode |
       | 2025-07-17 | 2025-07-18 | 200        |

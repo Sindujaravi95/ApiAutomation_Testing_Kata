@@ -15,19 +15,19 @@ Feature: Update Booking API
     Then user successfully update the room details with status <statusCode>
 
     Examples:
-      | firstname | lastname | email          | phone       | checkin    | checkout   | depositpaid | newFirst | newLast | newEmail          | newPhone    | newCheckin | newCheckout | statusCode | newDepositpaid |
-      | Sinduja   | Ravi     | test@gmail.com | 87955879703 | 2026-05-05 | 2026-05-06 | true        | Sindu    | Ravi    | updated@gmail.com | 87955879704 | 2026-05-07 | 2026-05-08  | 200        | false          |
+      | firstname | lastname | email          | phone       | checkin    | checkout   | depositpaid | newFirst | newLast | newEmail          | newPhone    | newCheckin | newCheckout | newDepositpaid | statusCode |
+      | Sinduja   | Ravi     | test@gmail.com | 87955879703 | 2026-05-05 | 2026-05-06 | true        | Sindu    | Ravi    | updated@gmail.com | 87955879704 | 2026-05-07 | 2026-05-08  | false          | 200        |
 
   @updateBooking @invalid @test
   Scenario Outline: Update booking with invalid input
     Given user books the hotel room with following details
-      | firstname | lastname | email             | phone       | checkin    | checkout   | depositpaid   |
-      | Sinduja   | Ravi     | test943@gmail.com | 87955879703 | 2026-04-07 | 2026-04-08 | <depositpaid> |
+      | firstname | lastname | email             | phone       | checkin    | checkout   | depositpaid |
+      | Sinduja   | Ravi     | test943@gmail.com | 87955879703 | 2026-04-07 | 2026-04-08 | false       |
     And user submit the hotel booking request
     And user should receive the hotel room booking id
     When user update the hotel room with following details
-      | firstname | lastname | email   | phone   | checkin   | checkout   | depositpaid      |
-      | <fname>   | <lname>  | <email> | <phone> | <checkin> | <checkout> | <newDepositpaid> |
+      | firstname | lastname | email   | phone   | checkin   | checkout   | depositpaid   |
+      | <fname>   | <lname>  | <email> | <phone> | <checkin> | <checkout> | <depositpaid> |
     And user update the booking request
     Then user should get the update booking response with <statusCode> and "<errorMessage>"
 
@@ -54,40 +54,40 @@ Feature: Update Booking API
     And user submit the hotel booking request
     And user should receive the hotel room booking id
     When user update the hotel room with following details
-      | firstname  | lastname  | email      | phone      | checkin      | checkout      |
-      | <newFirst> | <newLast> | <newEmail> | <newPhone> | <newCheckin> | <newCheckout> |
+      | firstname  | lastname  | email      | phone      | checkin      | checkout      | depositpaid      |
+      | <newFirst> | <newLast> | <newEmail> | <newPhone> | <newCheckin> | <newCheckout> | <newDepositpaid> |
     And user update the booking request "/api/bookings"
     Then user should get the update booking response with <statusCode>
 
     Examples:
-      | firstname | lastname | email          | phone       | checkin    | checkout   | newFirst | newLast | newEmail          | newPhone    | newCheckin | newCheckout | statusCode |
-      | Sinduja   | Ravi     | test@gmail.com | 87955879703 | 2026-05-05 | 2026-05-06 | Sindu    | Ravi    | updated@gmail.com | 87955879704 | 2026-05-07 | 2026-05-08  | 404        |
+      | firstname | lastname | email          | phone       | checkin    | checkout   | depositpaid | newFirst | newLast | newEmail          | newPhone    | newCheckin | newCheckout | newDepositpaid | statusCode |
+      | Sinduja   | Ravi     | test@gmail.com | 87955879703 | 2026-05-05 | 2026-05-06 | true        | Sindu    | Ravi    | updated@gmail.com | 87955879704 | 2026-05-07 | 2026-05-08  | false          | 404        |
 
 
   @updateBooking @invalid
   Scenario Outline: Update booking with non-existing booking id
     Given user update the hotel room with following details
-      | firstname   | lastname   | email   | phone   | checkin   | checkout   |
-      | <firstname> | <lastname> | <email> | <phone> | <checkin> | <checkout> |
+      | firstname   | lastname   | email   | phone   | checkin   | checkout   | depositpaid   |
+      | <firstname> | <lastname> | <email> | <phone> | <checkin> | <checkout> | <depositpaid> |
     And user update the booking request with invalid booking id
     Then user should get the update booking response with 404
     Examples:
-      | firstname | lastname | email          | phone       | checkin    | checkout   |
-      | Sinduja   | Ravi     | test@gmail.com | 87955879703 | 2026-05-05 | 2026-05-06 |
+      | firstname | lastname | email          | phone       | checkin    | checkout   | depositpaid |
+      | Sinduja   | Ravi     | test@gmail.com | 87955879703 | 2026-05-05 | 2026-05-06 | true        |
 
   @updateBooking @invalid
   Scenario Outline: Update booking using unsupported HTTP method
     Given user books the hotel room with following details
-      | firstname   | lastname   | email   | phone   | checkin   | checkout   |
-      | <firstname> | <lastname> | <email> | <phone> | <checkin> | <checkout> |
+      | firstname   | lastname   | email   | phone   | checkin   | checkout   | depositpaid   |
+      | <firstname> | <lastname> | <email> | <phone> | <checkin> | <checkout> | <depositpaid> |
     And user submit the hotel booking request
     And user should receive the hotel room booking id
     When user update the hotel room with following details
-      | firstname  | lastname  | email      | phone      | checkin      | checkout      |
-      | <newFirst> | <newLast> | <newEmail> | <newPhone> | <newCheckin> | <newCheckout> |
+      | firstname  | lastname  | email      | phone      | checkin      | checkout      | depositpaid      |
+      | <newFirst> | <newLast> | <newEmail> | <newPhone> | <newCheckin> | <newCheckout> | <newDepositpaid> |
     And user update the invalid booking request
     Then user should get the update booking response with <statusCode>
 
     Examples:
-      | firstname | lastname | email          | phone       | checkin    | checkout   | newFirst | newLast | newEmail          | newPhone    | newCheckin | newCheckout | statusCode |
-      | Sinduja   | Ravi     | test@gmail.com | 87955879703 | 2026-05-05 | 2026-05-06 | Sindu    | Ravi    | updated@gmail.com | 87955879704 | 2026-05-07 | 2026-05-08  | 405        |
+      | firstname | lastname | email          | phone       | checkin    | checkout   | depositpaid | newFirst | newLast | newEmail          | newPhone    | newCheckin | newCheckout | newDepositpaid | statusCode |
+      | Sinduja   | Ravi     | test@gmail.com | 87955879703 | 2026-05-05 | 2026-05-06 | true        | Sindu    | Ravi    | updated@gmail.com | 87955879704 | 2026-05-07 | 2026-05-08  | false          | 405        |

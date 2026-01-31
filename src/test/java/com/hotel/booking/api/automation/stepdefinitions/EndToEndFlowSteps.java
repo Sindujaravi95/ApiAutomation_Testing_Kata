@@ -54,7 +54,7 @@ public class EndToEndFlowSteps {
         createPayload.put("roomid", CommonUtils.generateRandomRoomId());
         createPayload.put("firstname", (data.get("firstname")));
         createPayload.put("lastname", (data.get("lastname")));
-        createPayload.put("depositpaid", false);
+        createPayload.put("depositpaid", data.get("depositpaid"));
         createPayload.put("bookingdates", bookingDates);
         createPayload.put("email", data.get("email"));
         createPayload.put("phone", data.get("phone"));
@@ -134,7 +134,7 @@ public class EndToEndFlowSteps {
         updatePayload.put("roomid", CommonUtils.generateRandomRoomId());
         updatePayload.put("firstname", data.get("newFirst"));
         updatePayload.put("lastname", data.get("newLast"));
-        updatePayload.put("depositpaid", false);
+        updatePayload.put("depositpaid", data.get("depositpaid"));
         updatePayload.put("bookingdates", bookingDates);
         updatePayload.put("email", data.get("newEmail"));
         updatePayload.put("phone", data.get("newPhone"));

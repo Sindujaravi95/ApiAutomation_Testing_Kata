@@ -45,6 +45,7 @@ public class SearchBookingDetailsWithRoomIdSteps {
         response = request
                 .get(booking_Endpoint);
     }
+
     @When("user search the booking details with {string}")
     public void user_search_booking_details_invalid_endpoint(String invalidEndpoint) {
         response = request

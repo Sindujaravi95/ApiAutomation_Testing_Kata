@@ -6,7 +6,6 @@ Feature: Get Booking Report API
     When user search the booking report
     Then user successfully received the report with status 200
 
-
   @bookingReport
   Scenario: Search booking report with invalid endpoint
     When user search the booking report with "/api/reports"

@@ -51,7 +51,7 @@ public class CancelBookingSteps {
             requestBody.put("roomid", CommonUtils.generateRandomRoomId());
             requestBody.put("firstname", data.get("firstname"));
             requestBody.put("lastname", data.get("lastname"));
-            requestBody.put("depositpaid", false);
+            requestBody.put("depositpaid", data.get("depositpaid"));
             requestBody.put("bookingdates", bookingDates);
             requestBody.put("email", data.get("email"));
             requestBody.put("phone", data.get("phone"));

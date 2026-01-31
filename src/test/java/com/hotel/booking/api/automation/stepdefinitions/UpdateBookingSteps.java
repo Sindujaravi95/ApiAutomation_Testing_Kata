@@ -54,7 +54,7 @@ public class UpdateBookingSteps {
             createPayload.put("roomid", CommonUtils.generateRandomRoomId());
             createPayload.put("firstname", data.get("firstname"));
             createPayload.put("lastname", data.get("lastname"));
-            createPayload.put("depositpaid", false);
+            createPayload.put("depositpaid", data.get("depositpaid"));
             createPayload.put("bookingdates", bookingDates);
             createPayload.put("email", data.get("email"));
             createPayload.put("phone", data.get("phone"));
@@ -91,7 +91,7 @@ public class UpdateBookingSteps {
             updatePayload.put("roomid", CommonUtils.generateRandomRoomId());
             updatePayload.put("firstname", data.get("firstname"));
             updatePayload.put("lastname", data.get("lastname"));
-            updatePayload.put("depositpaid", false);
+            updatePayload.put("depositpaid", data.get("depositpaid"));
             updatePayload.put("bookingdates", bookingDates);
             updatePayload.put("email", data.get("email"));
             updatePayload.put("phone", data.get("phone"));
