@@ -1,6 +1,7 @@
 package com.hotel.booking.api.automation.stepdefinitions;
 
 
+import com.hotel.booking.api.automation.utils.CommonUtils;
 import com.hotel.booking.api.automation.utils.ConfigReader;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
@@ -50,7 +51,7 @@ public class EndToEndFlowSteps {
         bookingDates.put("checkin", data.get("checkin"));
         bookingDates.put("checkout", data.get("checkout"));
 
-        createPayload.put("roomid", roomId);
+        createPayload.put("roomid", CommonUtils.generateRandomRoomId());
         createPayload.put("firstname", (data.get("firstname")));
         createPayload.put("lastname", (data.get("lastname")));
         createPayload.put("depositpaid", false);
@@ -130,6 +131,7 @@ public class EndToEndFlowSteps {
         bookingDates.put("checkin", data.get("newCheckin"));
         bookingDates.put("checkout", data.get("newCheckout"));
 
+        updatePayload.put("roomid", CommonUtils.generateRandomRoomId());
         updatePayload.put("firstname", data.get("newFirst"));
         updatePayload.put("lastname", data.get("newLast"));
         updatePayload.put("depositpaid", false);
