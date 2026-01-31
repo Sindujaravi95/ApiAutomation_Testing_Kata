@@ -29,8 +29,8 @@ public class Hooks {
         RestAssured.useRelaxedHTTPSValidation();
         RestAssured.config = RestAssured.config()
                 .httpClient(HttpClientConfig.httpClientConfig()
-                        .setParam("http.connection.timeout", 30000)
-                        .setParam("http.socket.timeout", 30000));
+                        .setParam("http.connection.timeout", 50000)
+                        .setParam("http.socket.timeout", 50000));
 
         Map<String, String> loginPayload = new HashMap<>();
         loginPayload.put("username", ConfigReader.get("username"));

@@ -21,10 +21,13 @@ public class EndToEndFlowSteps {
     private RequestSpecification request;
     private Response response;
 
+    Map<String, Object> createPayload = new HashMap<>();
+    Map<String, Object> updatePayload = new HashMap<>();
+
     private int bookingId;
     private final int roomId = 1;
-    private String booking_Endpoint="/api/booking";
-    private String room_Endpoint="/api/room";
+    String booking_Endpoint="/api/booking";
+    String room_Endpoint="/api/room";
 
     // ---------------- SETUP ----------------
 
@@ -47,17 +50,16 @@ public class EndToEndFlowSteps {
         bookingDates.put("checkin", data.get("checkin"));
         bookingDates.put("checkout", data.get("checkout"));
 
-        Map<String, Object> payload = new HashMap<>();
-        payload.put("roomid", roomId);
-        payload.put("firstname", (data.get("firstname")));
-        payload.put("lastname", (data.get("lastname")));
-        payload.put("depositpaid", true);
-        payload.put("bookingdates", bookingDates);
-        payload.put("email", data.get("email"));
-        payload.put("phone", data.get("phone"));
+        createPayload.put("roomid", roomId);
+        createPayload.put("firstname", (data.get("firstname")));
+        createPayload.put("lastname", (data.get("lastname")));
+        createPayload.put("depositpaid", false);
+        createPayload.put("bookingdates", bookingDates);
+        createPayload.put("email", data.get("email"));
+        createPayload.put("phone", data.get("phone"));
 
         request = request
-                .body(payload);
+                .body(createPayload);
     }
 
     @When("user submit the hotel room booking request")
@@ -70,11 +72,8 @@ public class EndToEndFlowSteps {
     @Then("user should get the hotel room booking id")
     public void verify_response_code() {
         response.then().log().all();
-
-        if (response.jsonPath().get("bookingid") != null) {
-            bookingId = response.jsonPath().getInt("bookingid");
-            System.out.print(bookingId);
-        }
+        bookingId = response.jsonPath().getInt("bookingid");
+        Assert.assertTrue(bookingId > 0, "Booking ID was not generated");
     }
 
 
@@ -128,29 +127,27 @@ public class EndToEndFlowSteps {
         Map<String, String> data = dataTable.asMaps().get(0);
 
         Map<String, Object> bookingDates = new HashMap<>();
-        bookingDates.put("checkin", data.get("checkin"));
-        bookingDates.put("checkout", data.get("checkout"));
+        bookingDates.put("checkin", data.get("newCheckin"));
+        bookingDates.put("checkout", data.get("newCheckout"));
 
-        Map<String, Object> payload = new HashMap<>();
-        payload.put("firstname", data.get("firstname"));
-        payload.put("lastname", data.get("lastname"));
-        payload.put("depositpaid", true);
-        payload.put("bookingdates", bookingDates);
-        payload.put("email", data.get("email"));
-        payload.put("phone", data.get("phone"));
+        updatePayload.put("firstname", data.get("newFirst"));
+        updatePayload.put("lastname", data.get("newLast"));
+        updatePayload.put("depositpaid", false);
+        updatePayload.put("bookingdates", bookingDates);
+        updatePayload.put("email", data.get("newEmail"));
+        updatePayload.put("phone", data.get("newPhone"));
 
         System.out.print("update====="+bookingId);
-
-        request = request
-                .body(payload);
 
     }
 
     @When("user update the booking request with booking id")
     public void update_booking_request() {
+        String updateEndPoint=booking_Endpoint+"/"+bookingId;
         response = request
+                .body(updatePayload)
                 .when()
-                .put(booking_Endpoint+"/"+bookingId);
+                .put(updateEndPoint);
     }
 
     // ---------------- DELETE BOOKING ----------------
