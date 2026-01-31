@@ -40,6 +40,8 @@ Examples:
 | Sinduja   | Ravi     | user.last@gmail.com | 879558797034 |            | 2026-01-29 | 400        | must not be null                     |
 | Sinduja   | Ravi     | user.last@gmail.com | 879558797034 | 2026-01-28 |            | 400        | must not be null                     |
 | Sinduja   | Ravi     | test@gmail.com      | 879558797034 |            |            | 400        | must not be null                     |
+| Sinduja   | Ravi     | test@gmail.com      | 879558797034 | 2026-01-32 |  2026-02-02 | 400       | must not be null                     |
+| Sinduja   | Ravi     | test@gmail.com      | 879558797034 | 2026-02-28 |  2026-02-29 | 400       | must not be null                     |
 
 @createBooking @invalid
 Scenario: Create booking with invalid endpoint

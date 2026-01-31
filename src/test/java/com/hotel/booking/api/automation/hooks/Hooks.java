@@ -45,14 +45,10 @@ public class Hooks {
         if(response.getStatusCode()==200){
             String token=response.jsonPath().get("token");
             ConfigReader.set("token",token);
-            System.out.println("Token : "+token);
         }
 
         test = extent.createTest(scenario.getName());
-        System.out.println("Starting Scenario: " + scenario.getName());
         ExtentTestManager.setTest(test);
-
-
     }
 
 
@@ -65,6 +61,5 @@ public class Hooks {
         }
         ExtentTestManager.removeTest();
         ExtentReportManager.flushReports();
-        Thread.sleep(5000);
     }
 }

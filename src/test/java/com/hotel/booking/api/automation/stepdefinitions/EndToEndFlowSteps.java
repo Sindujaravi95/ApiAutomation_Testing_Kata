@@ -138,9 +138,6 @@ public class EndToEndFlowSteps {
         updatePayload.put("bookingdates", bookingDates);
         updatePayload.put("email", data.get("newEmail"));
         updatePayload.put("phone", data.get("newPhone"));
-
-        System.out.print("update====="+bookingId);
-
     }
 
     @When("user update the booking request with booking id")

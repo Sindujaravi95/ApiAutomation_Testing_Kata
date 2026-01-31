@@ -5,7 +5,7 @@ Feature: Cancel Booking API
   Scenario: Cancel booking with valid booking id
     Given user books the hotel room with given details
       | firstname   | lastname   | email   | phone   | checkin   | checkout   |
-      | testing | testname | test25@gmail.com | 34943847898 | 2025-09-14 | 2025-09-15 |
+      | testing | testname | test25@gmail.com | 34943847898 | 2025-09-16 | 2025-09-17 |
     And user submit the room booking request
     And user should receive the room booking id
     When user cancel hotel booking request
@@ -15,7 +15,7 @@ Feature: Cancel Booking API
   Scenario: Cancel booking with invalid endpoint - 404
     Given user books the hotel room with given details
       | firstname   | lastname   | email   | phone   | checkin   | checkout   |
-      | testing | testing | test56@gmail.com | 34943847898 | 2025-10-15 | 2025-10-16 |
+      | testing | testing | test56@gmail.com | 34943847898 | 2025-10-17 | 2025-10-18 |
     And user submit the room booking request
     And user should receive the room booking id
     When user cancel hotel booking with "/api/delete"
