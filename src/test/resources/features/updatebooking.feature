@@ -36,7 +36,7 @@ Feature: Update Booking API
       |       | Ravi  | test@gmail.com     | 87955879703  | 2026-02-03 | 2026-02-04 | 400        | Firstname should not be blank        |
       | Sindu |       | test@gmail.com     | 87955879703  | 2026-02-03 | 2026-02-04 | 400        | Lastname should not be blank         |
       | Si    | Ravi  | test@gmail.com     | 87955879703  | 2026-02-03 | 2026-02-04 | 400        | size must be between 3 and 18        |
-      | testing | last  | test               | 87955879703  | 2026-02-03 | 2026-02-04 | 400        | must be a well-formed email address  |
+      | testing | last  | test             | 87955879703  | 2026-02-03 | 2026-02-04 | 400        | must be a well-formed email address  |
       | Sindu | Ravi  | test@gmail.com     | 87955        | 2026-02-03 | 2026-02-04 | 400        | size must be between 11 and 21       |
       | Sindu | Ravi  | test@gmail.com     | 87955879703  |            | 2026-02-04 | 400        | must not be null                     |
       | user  | last  | test@gmail.com     | 87958879703  | 2026-02-03 |            | 400        | must not be null                     |

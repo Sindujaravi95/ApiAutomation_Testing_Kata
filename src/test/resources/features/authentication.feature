@@ -1,4 +1,4 @@
-@hotelRoomBookingAPISuite
+@hotelRoomBookingApiSuite
 Feature: Auth Login API
 
   @login @valid

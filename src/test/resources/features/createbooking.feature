@@ -1,4 +1,4 @@
-@hotelRoomBookingAPISuite
+@hotelRoomBookingApiSuite
 Feature: Create Booking API
 
 #  Background: Authentication Token
